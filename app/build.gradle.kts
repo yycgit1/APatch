@@ -208,7 +208,7 @@ tasks.register<Exec>("goBuild") {
 
 tasks.register<Copy>("buildApd") {
     dependsOn("goBuild")
-    from("${project.rootDir}/apd_go/target/aarch64-linux-android/release/apd")
+    from("${project.rootDir}/apd_go/apd")
     into("${project.projectDir}/libs/arm64-v8a")
     rename("apd", "libapd.so")
 }
