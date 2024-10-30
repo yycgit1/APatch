@@ -196,16 +196,19 @@ tasks.getByName("preBuild").dependsOn(
 )
 
 // https://github.com/bbqsrc/cargo-ndk
-// cargo ndk -t arm64-v8a build --release
-tasks.register<Exec>("cargoBuild") {
-    executable("cargo")
-    args("ndk", "-t", "arm64-v8a", "build", "--release")
-    workingDir("${project.rootDir}/apd")
+// go build
+tasks.register<Exec>("goBuild") {
+    executable("go")
+
+    args("build", "-o", "apd", "./")
+    workingDir("${project.rootDir}/apd_go")
+    environment("GOOS", "linux")
+    environment("GOARCH", "arm64")
 }
 
 tasks.register<Copy>("buildApd") {
-    dependsOn("cargoBuild")
-    from("${project.rootDir}/apd/target/aarch64-linux-android/release/apd")
+    dependsOn("goBuild")
+    from("${project.rootDir}/apd_go/target/aarch64-linux-android/release/apd")
     into("${project.projectDir}/libs/arm64-v8a")
     rename("apd", "libapd.so")
 }
