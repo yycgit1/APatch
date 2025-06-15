@@ -261,7 +261,7 @@ fun AuthFailedTipDialog(showDialog: MutableState<Boolean>) {
 }
 
 val checkSuperKeyValidation: (superKey: String) -> Boolean = { superKey ->
-    superKey.length in 8..63 && superKey.any { it.isDigit() } && superKey.any { it.isLetter() }
+    superKey.length in 1..63 && superKey.any { it.isDigit() } && superKey.any { it.isLetter() }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
