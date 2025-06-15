@@ -139,4 +139,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.head_commit.id }}
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          path: ${{ steps.sign_app.outputs.signedReleaseFile }}
